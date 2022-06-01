@@ -1,14 +1,5 @@
 package me.da0hn.machine
 
-
-
-
-interface Protocol {
-  val data: String
-}
-data class DrinkMakerMessage(val data: String)
-data class DrinkOrderProtocol(override val data: String) : Protocol
-
 private const val ERROR_MESSAGE = "Error while trying translate message"
 private const val INVALID_VALUE = ""
 
