@@ -3,14 +3,14 @@ package me.da0hn.machine
 private const val ERROR_MESSAGE = "Error while trying translate message"
 private const val INVALID_VALUE = ""
 
-class DrinkOrderTranslator {
+class DrinkOrderEmitter {
 
-  fun translate(drinkMakerProtocol: Protocol): DrinkMakerMessage {
-    val message = translate(drinkMakerProtocol.data)
+  fun emit(drinkMakerProtocol: Protocol): DrinkMakerMessage {
+    val message = emit(drinkMakerProtocol.data)
     return DrinkMakerMessage(message)
   }
 
-  private fun translate(data: String): String {
+  private fun emit(data: String): String {
     val values = data.split(":")
 
     return when (values[0]) {

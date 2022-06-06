@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 
-internal class DrinkOrderTranslatorTest {
+internal class DrinkOrderEmitterTest {
 
   @Nested
   @DisplayName("Receive drink order")
   inner class DrinkOrderTest {
-    private val drinkOrderTranslator = DrinkOrderTranslator()
+    private val drinkOrderEmitter = DrinkOrderEmitter()
 
     @Test
     fun `Should make a tea drink with sugar and 1 stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderTranslator.translate(
+      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("T:1:0")
       )
 
@@ -26,7 +26,7 @@ internal class DrinkOrderTranslatorTest {
 
     @Test
     fun `Should make a coffee drink with no sugar and no stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderTranslator.translate(
+      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("C::")
       )
 
@@ -37,7 +37,7 @@ internal class DrinkOrderTranslatorTest {
 
     @Test
     fun `Should make a chocolate drink with 2 sugars and 1 stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderTranslator.translate(
+      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("H:2:0")
       )
 
@@ -48,7 +48,7 @@ internal class DrinkOrderTranslatorTest {
 
     @Test
     fun `Should not make drink when have sugar and hasn't stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderTranslator.translate(
+      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("C:2:")
       )
 
@@ -59,7 +59,7 @@ internal class DrinkOrderTranslatorTest {
 
     @Test
     fun `Should not make drink when has unknown drink identifier`() {
-      val message: DrinkMakerMessage = this.drinkOrderTranslator.translate(
+      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("U:2:0")
       )
 
@@ -70,7 +70,7 @@ internal class DrinkOrderTranslatorTest {
 
     @Test
     fun `Should not make drink when has invalid quantity sugar`() {
-      val message: DrinkMakerMessage = this.drinkOrderTranslator.translate(
+      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("C:5:0")
       )
 
@@ -81,7 +81,7 @@ internal class DrinkOrderTranslatorTest {
 
     @Test
     fun `Should not make drink when has invalid drink identifier`() {
-      val message: DrinkMakerMessage = this.drinkOrderTranslator.translate(
+      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol(":1:0")
       )
 
@@ -95,11 +95,11 @@ internal class DrinkOrderTranslatorTest {
   @DisplayName("Receive a message")
   inner class MessageOrderTest {
 
-    private val drinkOrderTranslator = DrinkOrderTranslator()
+    private val drinkOrderEmitter = DrinkOrderEmitter()
 
     @Test
     fun `Should delivery message`() {
-      val message = this.drinkOrderTranslator.translate(
+      val message = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("M:a simple message")
       )
 
@@ -110,7 +110,7 @@ internal class DrinkOrderTranslatorTest {
 
     @Test
     fun `Should not delivery empty message`() {
-      val message = this.drinkOrderTranslator.translate(
+      val message = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("M:")
       )
 
