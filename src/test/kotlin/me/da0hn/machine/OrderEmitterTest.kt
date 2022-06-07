@@ -18,8 +18,8 @@ internal class OrderEmitterTest {
 
     @Test
     fun `Should make a tea drink with sugar and 1 stick`() {
-      val message: DrinkOrderMessage = this.orderEmitter.emit(
-        DrinkOrderProtocol("T:1:0")
+      val message = this.orderEmitter.emit(
+        OrderMessageProtocol("T:1:0")
       )
 
       val expectedMessage = "Drink maker makes 1 tea with 1 sugar and a stick"
@@ -29,8 +29,8 @@ internal class OrderEmitterTest {
 
     @Test
     fun `Should make a coffee drink with no sugar and no stick`() {
-      val message: DrinkOrderMessage = this.orderEmitter.emit(
-        DrinkOrderProtocol("C::")
+      val message = this.orderEmitter.emit(
+        OrderMessageProtocol("C::")
       )
 
       val expectedMessage = "Drink maker makes 1 coffee with no sugar and no stick"
@@ -40,8 +40,8 @@ internal class OrderEmitterTest {
 
     @Test
     fun `Should make a chocolate drink with 2 sugars and 1 stick`() {
-      val message: DrinkOrderMessage = this.orderEmitter.emit(
-        DrinkOrderProtocol("H:2:0")
+      val message = this.orderEmitter.emit(
+        OrderMessageProtocol("H:2:0")
       )
 
       val expectedMessage = "Drink maker makes 1 chocolate with 2 sugar and a stick"
@@ -51,8 +51,8 @@ internal class OrderEmitterTest {
 
     @Test
     fun `Should not make drink when have sugar and hasn't stick`() {
-      val message: DrinkOrderMessage = this.orderEmitter.emit(
-        DrinkOrderProtocol("C:2:")
+      val message = this.orderEmitter.emit(
+        OrderMessageProtocol("C:2:")
       )
 
       val expectedMessage = "It's not possible make drink with some sugar and no stick"
@@ -62,8 +62,8 @@ internal class OrderEmitterTest {
 
     @Test
     fun `Should not make drink when has unknown drink identifier`() {
-      val message: DrinkOrderMessage = this.orderEmitter.emit(
-        DrinkOrderProtocol("U:2:0")
+      val message = this.orderEmitter.emit(
+        OrderMessageProtocol("U:2:0")
       )
 
       val expectedMessage = "Error while trying translate message"
@@ -73,8 +73,8 @@ internal class OrderEmitterTest {
 
     @Test
     fun `Should not make drink when has invalid quantity sugar`() {
-      val message: DrinkOrderMessage = this.orderEmitter.emit(
-        DrinkOrderProtocol("C:5:0")
+      val message = this.orderEmitter.emit(
+        OrderMessageProtocol("C:5:0")
       )
 
       val expectedMessage = "Error while trying translate message"
@@ -84,8 +84,8 @@ internal class OrderEmitterTest {
 
     @Test
     fun `Should not make drink when has invalid drink identifier`() {
-      val message: DrinkOrderMessage = this.orderEmitter.emit(
-        DrinkOrderProtocol(":1:0")
+      val message = this.orderEmitter.emit(
+        OrderMessageProtocol(":1:0")
       )
 
       val expectedMessage = "Error while trying translate message"
@@ -103,7 +103,7 @@ internal class OrderEmitterTest {
     @Test
     fun `Should delivery message`() {
       val message = this.orderEmitter.emit(
-        DrinkOrderProtocol("M:a simple message")
+        OrderMessageProtocol("M:a simple message")
       )
 
       val expectedMessage = "Sending: a simple message"
@@ -114,7 +114,7 @@ internal class OrderEmitterTest {
     @Test
     fun `Should not delivery empty message`() {
       val message = this.orderEmitter.emit(
-        DrinkOrderProtocol("M:")
+        OrderMessageProtocol("M:")
       )
 
       val expectedMessage = "Error while trying translate message"

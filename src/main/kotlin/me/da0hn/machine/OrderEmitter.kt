@@ -5,9 +5,9 @@ private const val INVALID_VALUE = ""
 
 class OrderEmitter {
 
-  fun emit(drinkMakerProtocol: Protocol): DrinkOrderMessage {
+  fun emit(drinkMakerProtocol: Protocol): Protocol {
     val message = emit(drinkMakerProtocol.data)
-    return DrinkOrderMessage(message)
+    return OrderMessageProtocol(message)
   }
 
   private fun emit(data: String): String {
