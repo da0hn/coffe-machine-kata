@@ -2,10 +2,13 @@ package me.da0hn.machine
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 
+@Tag("unit")
+@DisplayName("Test drink order emitter")
 internal class DrinkOrderEmitterTest {
 
   @Nested
