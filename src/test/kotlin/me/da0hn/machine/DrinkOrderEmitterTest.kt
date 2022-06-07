@@ -18,7 +18,7 @@ internal class DrinkOrderEmitterTest {
 
     @Test
     fun `Should make a tea drink with sugar and 1 stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
+      val message: DrinkOrderMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("T:1:0")
       )
 
@@ -29,7 +29,7 @@ internal class DrinkOrderEmitterTest {
 
     @Test
     fun `Should make a coffee drink with no sugar and no stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
+      val message: DrinkOrderMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("C::")
       )
 
@@ -40,7 +40,7 @@ internal class DrinkOrderEmitterTest {
 
     @Test
     fun `Should make a chocolate drink with 2 sugars and 1 stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
+      val message: DrinkOrderMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("H:2:0")
       )
 
@@ -51,7 +51,7 @@ internal class DrinkOrderEmitterTest {
 
     @Test
     fun `Should not make drink when have sugar and hasn't stick`() {
-      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
+      val message: DrinkOrderMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("C:2:")
       )
 
@@ -62,7 +62,7 @@ internal class DrinkOrderEmitterTest {
 
     @Test
     fun `Should not make drink when has unknown drink identifier`() {
-      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
+      val message: DrinkOrderMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("U:2:0")
       )
 
@@ -73,7 +73,7 @@ internal class DrinkOrderEmitterTest {
 
     @Test
     fun `Should not make drink when has invalid quantity sugar`() {
-      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
+      val message: DrinkOrderMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol("C:5:0")
       )
 
@@ -84,7 +84,7 @@ internal class DrinkOrderEmitterTest {
 
     @Test
     fun `Should not make drink when has invalid drink identifier`() {
-      val message: DrinkMakerMessage = this.drinkOrderEmitter.emit(
+      val message: DrinkOrderMessage = this.drinkOrderEmitter.emit(
         DrinkOrderProtocol(":1:0")
       )
 
