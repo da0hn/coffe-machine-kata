@@ -3,7 +3,7 @@ package me.da0hn.machine
 private const val ERROR_MESSAGE = "Error while trying translate message"
 private const val INVALID_VALUE = ""
 
-class DrinkOrderEmitter {
+class OrderEmitter {
 
   fun emit(drinkMakerProtocol: Protocol): DrinkOrderMessage {
     val message = emit(drinkMakerProtocol.data)
